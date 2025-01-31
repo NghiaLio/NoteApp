@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Bloc/Events/ThemeEvent.dart';
 import 'Bloc/Events/LayoutCubit.dart';
 import 'Bloc/Events/ManageFolderCubit.dart';
-import 'Theme/ThemeData.dart';
 import 'Views/mainHome.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'Bloc/Events/HomeEvent.dart';
 import 'Bloc/Events/Navigation.dart';
 import 'Bloc/Events/NoteScreenEvent.dart';
@@ -13,8 +12,13 @@ import 'Bloc/Events/SortNote.dart';
 import 'Bloc/Events/openDrawer.dart';
 
 
-void main() {
+void main()async {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  await Future.delayed(const Duration(seconds: 3));
+  FlutterNativeSplash.remove();
   runApp(const MyApp());
+
 }
 
 class MyApp extends StatelessWidget {
