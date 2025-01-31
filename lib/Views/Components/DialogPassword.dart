@@ -12,15 +12,19 @@ class dialogPass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Unlock',style: TextStyle(color: Theme.of(context).colorScheme.surface),),
+      backgroundColor: Theme.of(context).colorScheme.background,
+      title: Text('Unlock',style: TextStyle(color: Theme.of(context).colorScheme.surface,fontSize: 18),),
       content: TextField(
-        style: TextStyle(color: Theme.of(context).colorScheme.surface),
+        style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: 16),
         decoration: const InputDecoration(
             hintText: 'Nhap mk', border: OutlineInputBorder()),
         controller: passController,
       ),
       actions: [
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.8)
+          ),
             onPressed: () {
               if (passController.text.trim() == noteData.password) {
                 Navigator.pop(context);

@@ -130,14 +130,14 @@ class _NotescreenState extends State<Notescreen> {
               onPressed: backTap,
               icon: Icon(
                 Icons.arrow_back_ios_new,
-                size: 30, color: Theme.of(context).colorScheme.surface
+                size: 24, color: Theme.of(context).colorScheme.surface
               )),
           title: GestureDetector(
             onTap: _showTop,
             child: Text(
               titleText!,
               style: TextStyle(
-                  fontSize: 26,
+                  fontSize: 22,
                   fontWeight: FontWeight.w700,
                   color: !isHaveTitle!
                       ? Theme.of(context).colorScheme.onSurface
@@ -158,7 +158,7 @@ class _NotescreenState extends State<Notescreen> {
                     EdgeInsets.symmetric(vertical: 20, horizontal: 15),
                 border: InputBorder.none,
               ),
-              style:  TextStyle(fontSize: 22, fontWeight: FontWeight.w400, color:Theme.of(context).colorScheme.surface ),
+              style:  TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color:Theme.of(context).colorScheme.surface ),
               cursorColor: Colors.red,
               maxLines: null,
             ),

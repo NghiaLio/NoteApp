@@ -188,10 +188,11 @@ class _ManagefolderState extends State<Managefolder> {
                   leading:!isEdit
                       ? IconButton(onPressed: (){
                     Navigator.pop(context);
-                  }, icon:const Icon(Icons.arrow_back_ios_new, size: 30,))
+                  }, icon: Icon(Icons.arrow_back_ios_new, size: 30,color: Theme.of(context).colorScheme.surface,))
                       : Transform.scale(
-                    scale: 1.5,
+                    scale: 1.2,
                     child: Checkbox(
+                      side: BorderSide(color: Theme.of(context).colorScheme.surface, width: 1.5 ),
                       activeColor: Colors.red,
                       value: isCheckAll,
                       onChanged: checkAll,
@@ -199,24 +200,24 @@ class _ManagefolderState extends State<Managefolder> {
                       const CircleBorder(),
                     ),
                   ),
-                  title:isEdit ? const Text(
+                  title:isEdit ?  Text(
                     'Tất cả',
                     style: TextStyle(
-                        fontSize: 24,
+                        fontSize: 22,
                         fontWeight:
-                        FontWeight.w500),
-                  ): const Text(
+                        FontWeight.w500,color: Theme.of(context).colorScheme.surface,),
+                  ):  Text(
                     'Quản lý thư mục',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700,color: Theme.of(context).colorScheme.surface),
                   ),
                   actions: [
                     isEdit ? Container() :Padding(
                       padding: const EdgeInsets.only(right: 10),
                       child: GestureDetector(
                         onTap: edit,
-                        child:const Text(
+                        child: Text(
                           'Sửa',
-                          style: TextStyle(fontSize: 21, fontWeight: FontWeight.w700),
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700,color: Theme.of(context).colorScheme.surface),
                         ),
                       ),
                     )
@@ -257,7 +258,7 @@ class _ManagefolderState extends State<Managefolder> {
                                   onTap:isEdit ? null : tapToAddNew,
                                   leading:  Icon(Icons.add, size: 35,color:isEdit? Colors.green.withOpacity(0.5) : Colors.green,),
                                   title:  Text('Tạo thư mục',style:TextStyle(
-                                      fontSize: 22,
+                                      fontSize: 20,
                                       fontWeight: FontWeight.w400,
                                     color: isEdit ? Theme.of(context).colorScheme.surface.withOpacity(0.5) : Theme.of(context).colorScheme.surface
                                   )),
@@ -291,7 +292,7 @@ class _ManagefolderState extends State<Managefolder> {
 
   Widget bottomBar(List<folder> listFolder){
     return Container(
-      height: MediaQuery.of(context).size.height*0.1-20,
+      height: MediaQuery.of(context).size.height*0.1-15,
       width:MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primary
@@ -316,10 +317,10 @@ class _ManagefolderState extends State<Managefolder> {
       onTap: onTap,
       child: Column(
         children: [
-          Icon(icon, size: 30,color: Theme.of(context).colorScheme.surface,),
+          Icon(icon, size: 26,color: Theme.of(context).colorScheme.surface,),
           Text(
             text,
-            style:  TextStyle(fontSize: 17, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.surface,overflow: TextOverflow.ellipsis),
+            style:  TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.surface,overflow: TextOverflow.ellipsis),
           ),
         ],
       ),

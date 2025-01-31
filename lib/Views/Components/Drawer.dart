@@ -23,7 +23,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
   late bool backGroundItemFunction;
   
   void tapToManage(){
-    Navigator.push(context, MaterialPageRoute(builder: (c)=>Managefolder()));
+    Navigator.push(context, MaterialPageRoute(builder: (c)=>const Managefolder()));
   }
 
   void openMoreFolder() {
@@ -57,7 +57,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
       width: size.width * 0.8,
       decoration:  BoxDecoration(
           color: Theme.of(context).colorScheme.primary,
-          borderRadius: BorderRadius.only(
+          borderRadius:  const BorderRadius.only(
             topRight: Radius.circular(15),
             bottomRight: Radius.circular(15),
           )),
@@ -70,11 +70,11 @@ class _HomeDrawerState extends State<HomeDrawer> {
               padding: const EdgeInsets.only(right: 20, top: 20),
               child: IconButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (c)=>settingScreen()));
+                    Navigator.push(context, MaterialPageRoute(builder: (c)=>const settingScreen()));
                   },
                   icon: Icon(
                     Icons.settings,
-                    size: 32,
+                    size: 26,
                     color: Theme.of(context).colorScheme.onSurface,
                   )),
             ),
@@ -107,7 +107,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
             ),
             //folder
             ItemFunction(
-                isOpenFolder! ? Icons.folder_open : Icons.folder,
+                isOpenFolder ? Icons.folder_open : Icons.folder,
                 "Thư mục",
                 openMoreFolder,
                 context.read<NavigationCubit>().backGroundItemFunction[4],
@@ -115,7 +115,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
             ),
 
             //more folder
-            isOpenFolder!
+            isOpenFolder
                 ? Padding(
                     padding: const EdgeInsets.only(left: 20),
                     child: Column(
@@ -145,7 +145,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                             const BorderRadius.all(Radius.circular(50))),
                     child: Text(
                       'Quản lý thư mục',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600,color:Theme.of(context).colorScheme.surface),
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600,color:Theme.of(context).colorScheme.surface),
                     ),
                   ),
                 ),
@@ -169,12 +169,12 @@ class _HomeDrawerState extends State<HomeDrawer> {
           onTap: onTap,
           leading: Icon(
             icon,
-            size: 28,
+            size: 26,
             color: colorIcon,
           ),
           title: Text(
             title,
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400, color:Theme.of(context).colorScheme.surface ),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color:Theme.of(context).colorScheme.surface ),
           ),
         ),
       ),

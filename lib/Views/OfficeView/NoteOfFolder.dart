@@ -134,7 +134,11 @@ class _CyclebinState extends State<NoteOfFolder> {
   void addFavorite(List<note> list_note) {
     for (int i = 0; i < checkEdit!.length; i++) {
       if (checkEdit![i] == true) {
-        context.read<homeEvent>().updateFavorite(list_note[i]);
+        if(list_note[i].isFavorite){
+          context.read<homeEvent>().updateFavorite(list_note[i], false);
+        }else{
+          context.read<homeEvent>().updateFavorite(list_note[i], true);
+        }
       }
     }
     checkEdit = checkEdit!.map((e) => false).toList();
@@ -240,7 +244,7 @@ class _CyclebinState extends State<NoteOfFolder> {
                                         isEdit ? Column(
                                           children: [
                                             Transform.scale(
-                                              scale:1.5,
+                                              scale:1.2,
                                               child: Checkbox(
                                                   side: BorderSide(width: 1.5, color: Theme.of(context).colorScheme.surface),
                                                   activeColor: Colors.red,
@@ -248,7 +252,7 @@ class _CyclebinState extends State<NoteOfFolder> {
                                             ),
                                             Text(
                                               'Tất cả',
-                                              style: TextStyle(fontSize: 18, color: Theme.of(context).colorScheme.surface),
+                                              style: TextStyle(fontSize: 14, color: Theme.of(context).colorScheme.surface),
                                             )
                                           ],
                                         ) : Row(
@@ -256,10 +260,10 @@ class _CyclebinState extends State<NoteOfFolder> {
                                           children: [
                                             IconButton(
                                                 onPressed: ()=>Navigator.pop(context),
-                                                icon: Icon(Icons.arrow_back_ios_new, size: 30,color: Theme.of(context).colorScheme.surface,)
+                                                icon: Icon(Icons.arrow_back_ios_new, size: 24,color: Theme.of(context).colorScheme.surface,)
                                             ),
                                             PopupMenuButton(
-                                              iconSize: 35,
+                                              iconSize: 24,
                                               shape:
                                               const RoundedRectangleBorder(
                                                   borderRadius:
@@ -273,7 +277,7 @@ class _CyclebinState extends State<NoteOfFolder> {
                                                     value: '',
                                                     child: Text(
                                                       'Sửa',
-                                                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400,color: Theme.of(context).colorScheme.surface),
+                                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400,color: Theme.of(context).colorScheme.surface),
                                                     )
                                                 ),
 
@@ -285,11 +289,11 @@ class _CyclebinState extends State<NoteOfFolder> {
                                         ),
                                         Row(
                                           children: [
-                                            Icon(Icons.folder, color: configColor.rgbaToColor(widget.dataFolder.color),size: 60,),
+                                            Icon(Icons.folder, color: configColor.rgbaToColor(widget.dataFolder.color),size: 40,),
                                             Text(
                                               widget.dataFolder.name,
                                               style:TextStyle(
-                                                  fontSize: 26,
+                                                  fontSize: 22,
                                                   fontWeight: FontWeight.w500,
                                                   color: Theme.of(context).colorScheme.surface
                                               ),
@@ -307,7 +311,7 @@ class _CyclebinState extends State<NoteOfFolder> {
                               Center(
                                 child: Text(
                                   'Không có ghi chú',
-                                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.w700,color: Theme.of(context).colorScheme.surface),
+                                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700,color: Theme.of(context).colorScheme.surface),
                                 ),
                               )
                                   : ListView.builder(
@@ -344,7 +348,7 @@ class _CyclebinState extends State<NoteOfFolder> {
                                         value: '',
                                         child: Text( isFavorite ?  'Thêm vào mục yêu thích' : 'Bỏ khỏi mục yêu thích',
                                             style: TextStyle(
-                                                fontSize: 18,
+                                                fontSize: 14,
                                                 fontWeight: FontWeight.w400,color: Theme.of(context).colorScheme.surface)),
                                       )
                                     ],
@@ -355,14 +359,14 @@ class _CyclebinState extends State<NoteOfFolder> {
                                     color: Theme.of(context).colorScheme.primary,
                                     child: Icon(
                                       Icons.more_vert,
-                                      size: 30,
+                                      size: 26,
                                       color: Theme.of(context).colorScheme.onSurface,
                                     ),
                                   ),
                                   Text(
                                     'Nhiều hơn',
                                     style: TextStyle(
-                                        fontSize: 16, fontWeight: FontWeight.w400,color: Theme.of(context).colorScheme.onSurface),
+                                        fontSize: 14, fontWeight: FontWeight.w400,color: Theme.of(context).colorScheme.onSurface),
                                   )
                                 ],
                               )
@@ -383,7 +387,7 @@ class _CyclebinState extends State<NoteOfFolder> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: GestureDetector(
-        onTap:()=> tapToSeen(note_data),
+        onTap:()=> isEdit ? null : tapToSeen(note_data),
         onLongPress:() => setState(() {
           isEdit = checkEdit![index] = true;
         }),
@@ -421,7 +425,7 @@ class _CyclebinState extends State<NoteOfFolder> {
                   // title
                   Text(
                     note_data.title,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600,color: Theme.of(context).colorScheme.surface),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600,color: Theme.of(context).colorScheme.surface),
                   ),
                   const SizedBox(
                     height: 5,
@@ -430,7 +434,7 @@ class _CyclebinState extends State<NoteOfFolder> {
                   Text(
                     '${DateTime.parse(note_data.date).day}/${DateTime.parse(note_data.date).month}/${DateTime.parse(note_data.date).year} ',
                     style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 14,
                         fontWeight: FontWeight.w400,
                         color: Theme.of(context).colorScheme.onSurface),
                   ),
@@ -444,7 +448,7 @@ class _CyclebinState extends State<NoteOfFolder> {
                       : Text(
                     note_data.content,
                     style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 16,
                         fontWeight: FontWeight.w400,
                         color: Theme.of(context).colorScheme.surface,
                         overflow: TextOverflow.ellipsis),
@@ -475,7 +479,7 @@ class _CyclebinState extends State<NoteOfFolder> {
                 duration: const Duration(milliseconds: 500),
                 opacity:isEdit ? 1.0 : 0.0,
                 child: Transform.scale(
-                  scale: 1.2,
+                  scale: 1.0,
                   child: Checkbox(
                     activeColor: Colors.red,
                     side: BorderSide(color: Theme.of(context).colorScheme.surface, width: 1.5),
@@ -500,12 +504,12 @@ class _CyclebinState extends State<NoteOfFolder> {
         children: [
           Icon(
             icon,
-            size: 30,
+            size: 26,
             color: Theme.of(context).colorScheme.onSurface,
           ),
           Text(
             text,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400,color: Theme.of(context).colorScheme.onSurface),
+            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400,color: Theme.of(context).colorScheme.onSurface),
           )
         ],
       ),

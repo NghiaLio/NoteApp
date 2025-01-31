@@ -38,4 +38,14 @@ class repoSharePreferences{
     final currentIndex = prefs.getInt('currentIndex');
     return currentIndex;
   }
+
+  //Theme
+  Future<void> setTheme(String theme) async{
+    final prefs =await SharedPreferences.getInstance();
+    prefs.setString('theme', theme);
+  }
+  Future<String?> getTheme() async{
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('theme');
+  }
 }

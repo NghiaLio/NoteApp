@@ -108,7 +108,7 @@ class _HomeState extends State<Home> {
             child: Text(
               'Lưới (nhỏ)',
               style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: initialLayout == 'luoi-nho'
                       ? Colors.deepOrange
@@ -120,7 +120,7 @@ class _HomeState extends State<Home> {
             child: Text(
               'Lưới (vừa)',
               style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: initialLayout == 'luoi-vua'
                       ? Colors.deepOrange
@@ -133,7 +133,7 @@ class _HomeState extends State<Home> {
             child: Text(
               'Danh sách',
               style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: initialLayout == 'danh-sach'
                       ? Colors.deepOrange
@@ -277,7 +277,11 @@ class _HomeState extends State<Home> {
   void addFavorite(List<note> list_note) {
     for (int i = 0; i < checkEdit!.length; i++) {
       if (checkEdit![i] == true) {
-        context.read<homeEvent>().updateFavorite(list_note[i]);
+        if(list_note[i].isFavorite){
+          context.read<homeEvent>().updateFavorite(list_note[i], false);
+        }else{
+          context.read<homeEvent>().updateFavorite(list_note[i], true);
+        }
       }
     }
     checkEdit = checkEdit!.map((e) => false).toList();
@@ -392,21 +396,21 @@ class _HomeState extends State<Home> {
         value: 'edit',
         child: Text(
           'Sửa',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.surface),
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.surface),
         ),
       ),
        PopupMenuItem(
         value: 'watch',
         child: Text(
           'Xem',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400,color: Theme.of(context).colorScheme.surface),
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400,color: Theme.of(context).colorScheme.surface),
         ),
       ),
        PopupMenuItem(
         value: 'favorite',
         child: Text(
           'Ghim mục yêu thích lên đầu',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400,color: Theme.of(context).colorScheme.surface),
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400,color: Theme.of(context).colorScheme.surface),
         ),
       ),
     ];
@@ -415,21 +419,21 @@ class _HomeState extends State<Home> {
         value: 'Tiêu đề',
         child: Text(
           'Tiêu đề',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400,color: Theme.of(context).colorScheme.surface),
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400,color: Theme.of(context).colorScheme.surface),
         ),
       ),
       PopupMenuItem(
         value: 'Ngày tạo',
         child: Text(
           'Ngày tạo',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.surface),
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.surface),
         ),
       ),
       PopupMenuItem(
         value: 'Ngày sửa đổi',
         child: Text(
           'Ngày sửa đổi',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400,color: Theme.of(context).colorScheme.surface),
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400,color: Theme.of(context).colorScheme.surface),
         ),
       ),
     ];
@@ -449,11 +453,16 @@ class _HomeState extends State<Home> {
           }
           return WillPopScope(
             onWillPop: () async {
-              setState(() {
-                checkEdit = checkEdit!.map((e) => false).toList();
-                isEdit = false;
-              });
-              return false;
+              if(isEdit){
+                setState(() {
+                  checkEdit = checkEdit!.map((e) => false).toList();
+                  isEdit = false;
+                });
+                return false;
+              }else{
+                return true;
+              }
+
             },
             child: Stack(
               alignment: Alignment.bottomCenter,
@@ -489,7 +498,7 @@ class _HomeState extends State<Home> {
                                             Text(
                                               widget.headerTitle,
                                               style: TextStyle(
-                                                  fontSize: 40,
+                                                  fontSize: 30,
                                                   fontWeight: FontWeight.w600,
                                                 color: Theme.of(context).colorScheme.surface
                                               ),
@@ -513,7 +522,7 @@ class _HomeState extends State<Home> {
                               Padding(
                                 padding: const EdgeInsets.only(top: 10),
                                 child: SizedBox(
-                                  height: size.height * 1 / 10 - 15,
+                                  height: size.height * 1 / 10,
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -525,12 +534,12 @@ class _HomeState extends State<Home> {
                                                   onPressed: widget.openDrawer,
                                                   icon: Icon(
                                                     Icons.menu,
-                                                    size: 35, color: Theme.of(context).colorScheme.surface
+                                                    size: 30, color: Theme.of(context).colorScheme.surface
                                                   ))
                                               : Column(
                                                   children: [
                                                     Transform.scale(
-                                                      scale: 1.5,
+                                                      scale: 1.2,
                                                       child: Checkbox(
                                                         value: isCheckAll,
                                                         activeColor: Colors.red,
@@ -544,7 +553,7 @@ class _HomeState extends State<Home> {
                                                     Text(
                                                       'Tất cả',
                                                       style: TextStyle(
-                                                          fontSize: 16,
+                                                          fontSize: 14,
                                                           fontWeight:
                                                               FontWeight.w400,
                                                           color: Theme.of(context).colorScheme.surface
@@ -563,7 +572,7 @@ class _HomeState extends State<Home> {
                                                   ? 'Tất cả ghi chú'
                                                   : 'Chọn ghi chú',
                                               style: TextStyle(
-                                                  fontSize: 26,
+                                                  fontSize: 20,
                                                   fontWeight: FontWeight.w500,
                                                   color: Theme.of(context).colorScheme.surface
                                               ),
@@ -578,7 +587,7 @@ class _HomeState extends State<Home> {
                                                     onPressed: tapToSearchView,
                                                     icon: Icon(
                                                       Icons.search,
-                                                      size: 30,
+                                                      size: 28,
                                                         color: Theme.of(context).colorScheme.surface
                                                     )),
                                                 Theme(
@@ -591,7 +600,7 @@ class _HomeState extends State<Home> {
                                                     key: _menuButtonKey,
                                                     itemBuilder: (context) =>
                                                         listOption,
-                                                    iconSize: 32,
+                                                    iconSize: 28,
                                                     shape:
                                                         const RoundedRectangleBorder(
                                                             borderRadius:
@@ -641,7 +650,7 @@ class _HomeState extends State<Home> {
                                                 child: Text(
                                                   nameSort,
                                                   style: TextStyle(
-                                                      fontSize: 18,
+                                                      fontSize: 14,
                                                       fontWeight:
                                                           FontWeight.w400,
                                                       color:
@@ -715,7 +724,7 @@ class _HomeState extends State<Home> {
                                         child: Text(
                                           'Không có ghi chú',
                                           style: TextStyle(
-                                              fontSize: 24,
+                                              fontSize: 20,
                                               fontWeight: FontWeight.w600,
                                               color: Theme.of(context).colorScheme.surface
                                           ),
@@ -755,7 +764,7 @@ class _HomeState extends State<Home> {
                                     value: '',
                                     child: Text( isFavorite ?  'Thêm vào mục yêu thích' : 'Bỏ khỏi mục yêu thích',
                                         style:TextStyle(
-                                            fontSize: 18,
+                                            fontSize: 14,
                                             fontWeight: FontWeight.w400,color: Theme.of(context).colorScheme.surface)),
                                   )
                                 ],
@@ -766,14 +775,14 @@ class _HomeState extends State<Home> {
                                 color: Theme.of(context).colorScheme.primary,
                                 child: Icon(
                                   Icons.more_vert,
-                                  size: 30,
+                                  size: 26,
                                   color: Theme.of(context).colorScheme.onSurface,
                                 ),
                               ),
                               Text(
                                 'Nhiều hơn',
                                 style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.w400,color: Theme.of(context).colorScheme.onSurface),
+                                    fontSize: 14, fontWeight: FontWeight.w400,color: Theme.of(context).colorScheme.onSurface),
                               )
                             ],
                           )
@@ -807,7 +816,7 @@ class _HomeState extends State<Home> {
                             child: const Icon(
                               Icons.edit,
                               color: Colors.amber,
-                              size: 35,
+                              size: 30,
                             ),
                           ),
                         ),
@@ -827,16 +836,12 @@ class _HomeState extends State<Home> {
           setState(() {
             isEdit = false;
           });
-          ScaffoldMessenger.of(context)
-              .showSnackBar(const SnackBar(content: Text('delete success')));
           fetchData();
         }
         if (state is updateSucees) {
           setState(() {
             isEdit = false;
           });
-          ScaffoldMessenger.of(context)
-              .showSnackBar(const SnackBar(content: Text('note is locked')));
           fetchData();
         }
       },
@@ -891,7 +896,7 @@ class _HomeState extends State<Home> {
                       : Text(
                           note_data.content,
                           style: TextStyle(
-                              fontSize: 16, overflow: TextOverflow.ellipsis,color: Theme.of(context).colorScheme.surface),
+                              fontSize: 14, overflow: TextOverflow.ellipsis,color: Theme.of(context).colorScheme.surface),
                           maxLines: null,
                         ),
                 ),
@@ -922,7 +927,7 @@ class _HomeState extends State<Home> {
           Text(
             note_data.title,
             style: TextStyle(
-                fontSize: 22,
+                fontSize: 20,
                 fontWeight: FontWeight.w700,
                 color: Theme.of(context).colorScheme.surface,
                 overflow: TextOverflow.ellipsis),
@@ -931,7 +936,7 @@ class _HomeState extends State<Home> {
           Text(
             '${DateTime.parse(note_data.date).day}-${DateTime.parse(note_data.date).month}-${DateTime.parse(note_data.date).year}',
             style: TextStyle(
-                fontSize: 18,
+                fontSize: 14,
                 color: Theme.of(context).colorScheme.onSurface,
                 fontWeight: FontWeight.w400),
           )
@@ -982,7 +987,7 @@ class _HomeState extends State<Home> {
                   // title
                   Text(
                     note_data.title,
-                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(
                     height: 5,
@@ -991,7 +996,7 @@ class _HomeState extends State<Home> {
                   Text(
                     '${DateTime.parse(note_data.date).day}/${DateTime.parse(note_data.date).month}/${DateTime.parse(note_data.date).year} ',
                     style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 14,
                         fontWeight: FontWeight.w400,
                         color: Theme.of(context).colorScheme.onSurface),
                   ),
@@ -1005,7 +1010,7 @@ class _HomeState extends State<Home> {
                       : Text(
                           note_data.content,
                           style: const TextStyle(
-                              fontSize: 18,
+                              fontSize: 14,
                               fontWeight: FontWeight.w400,
                               overflow: TextOverflow.ellipsis),
                           maxLines: 4,
@@ -1059,12 +1064,12 @@ class _HomeState extends State<Home> {
         children: [
           Icon(
             icon,
-            size: 30,
+            size: 24,
             color: Theme.of(context).colorScheme.onSurface,
           ),
           Text(
             text,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
           )
         ],
       ),

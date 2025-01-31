@@ -43,9 +43,9 @@ class _modelSheetColorState extends State<modelSheetColor> {
             children: [
               Text(
                 'Thay đổi màu thư mục',
-                style: TextStyle(fontSize: 21, fontWeight: FontWeight.w700,color: Theme.of(context).colorScheme.surface),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700,color: Theme.of(context).colorScheme.surface),
               ),
-              const SizedBox(height: 15,),
+              const SizedBox(height: 10,),
               SizedBox(
                 height:MediaQuery.of(context).size.height*0.13 ,
                 width: MediaQuery.of(context).size.width,
@@ -76,7 +76,7 @@ class _modelSheetColorState extends State<modelSheetColor> {
                     width: MediaQuery.of(context).size.width,
                     child: const Text(
                       'Hủy',
-                      style: TextStyle(fontSize: 25,fontWeight: FontWeight.w600, color: Colors.blueAccent),
+                      style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600, color: Colors.blueAccent),
                     ),
                   ),
                 ),

@@ -31,9 +31,9 @@ class _ModelsheetState extends State<Modelsheet> {
       ),
       child: SafeArea(
         child: Container(
-          height: MediaQuery.of(context).size.height*0.4,
+          height: MediaQuery.of(context).size.height*0.4+10,
           width:MediaQuery.of(context).size.width ,
-          padding: const EdgeInsets.all(25),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
           decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primary,
               borderRadius: BorderRadius.all(Radius.circular(25))
@@ -41,11 +41,11 @@ class _ModelsheetState extends State<Modelsheet> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Tạo thư mục', style: TextStyle(fontSize: 21, fontWeight: FontWeight.w500),),
-              const SizedBox(height: 20,),
+               Text('Tạo thư mục', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500,color: Theme.of(context).colorScheme.surface),),
+              const SizedBox(height: 10,),
               TextField(
                 controller: widget.controllerText,
-                style: TextStyle(fontSize: 20,color: Theme.of(context).colorScheme.surface),
+                style: TextStyle(fontSize: 18,color: Theme.of(context).colorScheme.surface),
                 decoration: const InputDecoration(
                     hintText: 'Nhập tên',
                     border: InputBorder.none,
@@ -94,9 +94,9 @@ class _ModelsheetState extends State<Modelsheet> {
                     onTap: ()=> Navigator.pop(context),
                     child: SizedBox(
                       width:MediaQuery.of(context).size.width*0.3,
-                      height:MediaQuery.of(context).size.width*0.12,
+                      height:MediaQuery.of(context).size.width*0.08,
                       child: const Center(
-                        child: Text('Hủy', style: TextStyle(fontSize: 21, color: Colors.blueAccent, fontWeight: FontWeight.w700),),
+                        child: Text('Hủy', style: TextStyle(fontSize: 18, color: Colors.blueAccent, fontWeight: FontWeight.w700),),
                       ),
                     ),
                   ),
@@ -108,7 +108,7 @@ class _ModelsheetState extends State<Modelsheet> {
                       width:MediaQuery.of(context).size.width*0.3,
                       height:MediaQuery.of(context).size.width*0.12,
                       child: const Center(
-                        child: Text('Thêm', style: TextStyle(fontSize: 21, color: Colors.blueAccent, fontWeight: FontWeight.w700),),
+                        child: Text('Thêm', style: TextStyle(fontSize: 18, color: Colors.blueAccent, fontWeight: FontWeight.w700),),
                       ),
                     ),
                   ),

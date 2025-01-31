@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MultiBlocProvider(
       providers: [
-        BlocProvider(create: (create)=>themeEvent(lightMode)),
+        BlocProvider(create: (create)=>themeEvent()..getTheme()),
         BlocProvider(create: (create) => Opendrawer(false)),
         BlocProvider(create: (create) => NavigationCubit()),
         BlocProvider(create: (create)=> homeEvent()),
@@ -34,9 +34,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (create)=>LayoutCubit()),
         BlocProvider(create: (create)=>manageFolderCubit()..getAllFolder()),
       ],
-      child: BlocBuilder<themeEvent,ThemeData>(
+      child: BlocBuilder<themeEvent,themeState>(
         builder: (context,state) {
-          ThemeData _theme = state;
+          ThemeData _theme = state.themeData;
           return MaterialApp(
               home:const Mainhome(),
             theme: _theme,

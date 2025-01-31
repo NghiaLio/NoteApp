@@ -46,7 +46,7 @@ class _ItemfolderState extends State<Itemfolder> {
             duration: const Duration(milliseconds: 200),
             left: widget.isEdit! ? size.width*0.2 : 0,
             child: GestureDetector(
-              onTap:()=> tapToSeenFolder(widget.dataFolder),
+              onTap:()=> widget.isEdit! ? null : tapToSeenFolder(widget.dataFolder),
               child: Container(
                 height: size.width*0.15,
                 color: Theme.of(context).colorScheme.primary,
@@ -55,9 +55,9 @@ class _ItemfolderState extends State<Itemfolder> {
                   children: [
                     Icon(Icons.folder_open, size: 28,color: configColor.rgbaToColor(widget.dataFolder.color),),
                     const SizedBox(width: 30,),
-                    Text(widget.dataFolder.name,style:const TextStyle(
+                    Text(widget.dataFolder.name,style: TextStyle(
                         fontSize: 22,
-                        fontWeight: FontWeight.w400
+                        fontWeight: FontWeight.w400,color: Theme.of(context).colorScheme.surface
                     ))
                   ],
                 ),

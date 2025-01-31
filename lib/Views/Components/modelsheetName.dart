@@ -20,7 +20,7 @@ class modelSheetName extends StatelessWidget {
           color: Theme.of(context).colorScheme.primary,
           borderRadius: const BorderRadius.all(Radius.circular(20))
         ),
-        height: MediaQuery.of(context).size.height*0.23,
+        height: MediaQuery.of(context).size.height*0.22+5,
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -28,12 +28,12 @@ class modelSheetName extends StatelessWidget {
           children: [
             Text(
               'Thay đổi tên thư mục',
-              style: TextStyle(fontSize: 21, fontWeight: FontWeight.w700,color: Theme.of(context).colorScheme.surface),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700,color: Theme.of(context).colorScheme.surface),
             ),
-            const SizedBox(height: 15,),
+            const SizedBox(height: 5,),
             TextField(
               controller: textController,
-              style: TextStyle(fontSize: 22,color: Theme.of(context).colorScheme.surface),
+              style: TextStyle(fontSize: 16,color: Theme.of(context).colorScheme.surface),
               decoration: const InputDecoration(
                   hintText: 'Nhập tên',
                   border: InputBorder.none,
@@ -41,7 +41,7 @@ class modelSheetName extends StatelessWidget {
               ),
             ),
             Divider(thickness: 2,color: Theme.of(context).colorScheme.surface.withOpacity(0.8),height: 0,),
-            const SizedBox(height: 20,),
+            const SizedBox(height: 5,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -51,7 +51,7 @@ class modelSheetName extends StatelessWidget {
                     width:MediaQuery.of(context).size.width*0.3,
                     height:MediaQuery.of(context).size.width*0.12,
                     child: const Center(
-                      child: Text('Hủy', style: TextStyle(fontSize: 22, color: Colors.blueAccent, fontWeight: FontWeight.w700),),
+                      child: Text('Hủy', style: TextStyle(fontSize: 16, color: Colors.blueAccent, fontWeight: FontWeight.w700),),
                     ),
                   ),
                 ),
@@ -61,7 +61,7 @@ class modelSheetName extends StatelessWidget {
                     width:MediaQuery.of(context).size.width*0.3,
                     height:MediaQuery.of(context).size.width*0.12,
                     child: const Center(
-                      child: Text('Thêm', style: TextStyle(fontSize: 22, color: Colors.blueAccent, fontWeight: FontWeight.w700),),
+                      child: Text('Thêm', style: TextStyle(fontSize: 16, color: Colors.blueAccent, fontWeight: FontWeight.w700),),
                     ),
                   ),
                 ),

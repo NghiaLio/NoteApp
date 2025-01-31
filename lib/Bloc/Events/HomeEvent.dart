@@ -76,14 +76,14 @@ class homeEvent extends Cubit<Home_state>{
   }
   
   //update favorite
-  Future<void> updateFavorite(note noteData) async{
+  Future<void> updateFavorite(note noteData, bool isFavorite) async{
     try{
       final note noteUpdate = note(
           id: noteData.id,
           content: noteData.content,
           date: noteData.date,
           date_change: noteData.date_change,
-          isFavorite: true,
+          isFavorite: isFavorite,
           isLock: noteData.isLock,
           isDelete: noteData.isDelete,
           localFolder: noteData.localFolder,

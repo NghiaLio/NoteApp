@@ -63,7 +63,7 @@ class _MyTopSheetState extends State<MyTopSheet> {
                           // [titleController.text, widget.isFavorite]
                       );
                     },
-                    icon: Icon(Icons.arrow_upward, size: 30,color: Theme.of(context).colorScheme.surface)
+                    icon: Icon(Icons.arrow_upward, size: 24,color: Theme.of(context).colorScheme.surface)
                 ),
                 IconButton(
                     onPressed: (){
@@ -71,7 +71,7 @@ class _MyTopSheetState extends State<MyTopSheet> {
                         widget.isFavorite = !widget.isFavorite;
                       });
                     },
-                    icon: Icon( widget.isFavorite ? Icons.star_purple500_outlined :  Icons.star_outline_sharp, size: 35,color:widget.isFavorite ? Colors.yellow : null ,)
+                    icon: Icon( widget.isFavorite ? Icons.star_purple500_outlined :  Icons.star_outline_sharp, size: 26,color:widget.isFavorite ? Colors.yellow : null ,)
                 ),
               ],
             ),
@@ -83,24 +83,24 @@ class _MyTopSheetState extends State<MyTopSheet> {
               controller: titleController,
               decoration: InputDecoration(
                   hintText: 'Tiêu đề',
-                  hintStyle:TextStyle(fontSize: 30, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface) ,
+                  hintStyle:TextStyle(fontSize: 26, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface) ,
                   border: InputBorder.none
               ),
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500,color: Theme.of(context).colorScheme.surface),
             ),
           ),
-          const SizedBox(height: 10,),
+          // const SizedBox(height: 10,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: GestureDetector(
               onTap: tapToshowSelectedFolder,
               child: Row(
                 children: [
-                  Icon(Icons.folder_open, size: 30,color:configColor.rgbaToColor(widget.dataFolder!.color),),
+                  Icon(Icons.folder_open, size: 24,color:configColor.rgbaToColor(widget.dataFolder!.color),),
                   const SizedBox(width: 10,),
                   Text(
                     widget.dataFolder!.name,
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onSurface),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onSurface),
                   )
                 ],
               ),
